@@ -2,85 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Knox.xyz</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="https://cdn.discordapp.com/attachments/1369926176448970815/1372535324760211486/Picsart_25-05-08_10-36-56-963.jpg?ex=682720a1&is=6825cf21&hm=21db21bf730bb8edf15af695d045eb24e3a290378ff20e8f45a4d7785a610a00&" type="image/png">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      scroll-behavior: smooth;
-      background-color: #000;
-      color: white;
-    }
-    nav {
-      background-color: #07f5c5;
-      padding: 1em;
-      position: sticky;
-      top: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-    }
-    nav .logo {
-      font-size: 1.5em;
-      font-weight: bold;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1em;
-    }
-    nav ul li {
-      cursor: pointer;
-    }
-    section {
-      padding: 4em 2em;
-      min-height: 100vh;
-    }
-    .home {
-      background: linear-gradient(to right, #07f5c5, #000);
-      color: #000;
-    }
-    .about {
-      background-color: #111;
-    }
-    footer {
-      background-color: #07f5c5;
-      color: #000;
-      text-align: center;
-      padding: 1em;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-  </style>
+  <link rel="icon" href="https://cdn.discordapp.com/attachments/1369926176448970815/1372535324760211486/Picsart_25-05-08_10-36-56-963.jpg" type="image/png">
 </head>
 <body>
+  <canvas id="snow-canvas"></canvas>
+
   <nav>
     <div class="logo">Knox.xyz</div>
     <ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <section id="home" class="home">
+  <section id="home" class="section home">
     <h1>Welcome to Knox.xyz</h1>
     <p>Your ultimate Discord bot dashboard</p>
-    <img src="https://cdn.discordapp.com/attachments/1369926176448970815/1372535324760211486/Picsart_25-05-08_10-36-56-963.jpg?ex=682720a1&is=6825cf21&hm=21db21bf730bb8edf15af695d045eb24e3a290378ff20e8f45a4d7785a610a00&" alt="Knox Logo" style="max-width: 200px; margin-top: 20px; border-radius: 10px;" />
+    <img class="logo-img" src="https://cdn.discordapp.com/attachments/1369926176448970815/1372535324760211486/Picsart_25-05-08_10-36-56-963.jpg" alt="Knox Logo">
   </section>
 
-  <section id="about" class="about">
-    <h2>About Knox.xyz</h2>
-    <p>Knox.xyz is a feature-rich Discord bot offering advanced tools, client dashboards, and real-time management features designed for power users and community admins.</p>
+  <section id="about" class="section">
+    <h2>About</h2>
+    <p>Knox.xyz is a powerful Discord bot built for modern server management, packed with automation, monitoring, and advanced user tools.</p>
+  </section>
+
+  <section id="features" class="section">
+    <h2>Features</h2>
+    <ul class="features-list">
+      <li>✅ Customizable Commands</li>
+      <li>✅ User & Role Management</li>
+      <li>✅ Real-time Dashboard</li>
+      <li>✅ Logging & Security Tools</li>
+      <li>✅ Fast and Lightweight</li>
+    </ul>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact</h2>
+    <p>Need help or have questions?</p>
+    <p>📧 Email: support@knox.xyz</p>
+    <p>💬 Discord: <strong>@KnoxBot</strong></p>
   </section>
 
   <footer>
-    &copy; 2025 Knox.xyz. All rights reserved.
+    &copy; 2025 Knox.xyz — All rights reserved.
   </footer>
+
+  <script>
+    const canvas = document.getElementById('snow-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const snowflakes = [];
+    for (let i = 0; i < 150; i++) {
+      snowflakes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 1,
+        d: Math.random() + 0.5
+      });
+    }
+
+    function drawSnow() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      for (let i = 0; i < snowflakes.length; i++) {
+        const f = snowflakes[i];
+        ctx.moveTo(f.x, f.y);
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
+      }
+      ctx.fill();
+      moveSnow();
+    }
+
+    function moveSnow() {
+      for (let i = 0; i < snowflakes.length; i++) {
+        const f = snowflakes[i];
+        f.y += f.d;
+        if (f.y > canvas.height) {
+          f.y = 0;
+          f.x = Math.random() * canvas.width;
+        }
+      }
+    }
+
+    setInterval(drawSnow, 33);
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
 </body>
 </html>
