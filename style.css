@@ -48,6 +48,13 @@ canvas#snow-canvas {
   box-shadow: 0 0 20px #07f5c5;
 }
 
+.logo-description {
+  margin-top: 1em;
+  color: #aaaaaa;
+  font-size: 1em;
+  max-width: 80%;
+}
+
 .buttons {
   margin-top: 2em;
   display: flex;
