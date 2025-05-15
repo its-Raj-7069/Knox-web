@@ -33,12 +33,6 @@ canvas#snow-canvas {
   text-align: center;
 }
 
-.home h1 {
-  font-size: 2.5em;
-  color: #07f5c5;
-  margin-top: 1em;
-}
-
 .logo-img {
   width: 180px;
   height: 180px;
@@ -48,10 +42,20 @@ canvas#snow-canvas {
   box-shadow: 0 0 20px #07f5c5;
 }
 
-.logo-description {
+h1 {
+  font-size: 2.5em;
+  color: #07f5c5;
   margin-top: 1em;
+}
+
+.brand {
+  color: #07f5c5;
+}
+
+.description {
   color: #aaaaaa;
   font-size: 1em;
+  margin-top: 0.5em;
   max-width: 80%;
 }
 
